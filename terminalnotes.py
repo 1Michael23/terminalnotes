@@ -7,26 +7,27 @@ location = '/home/sl3/notes.txt'
 from rich import print
 import sys
 
-#command 
+#save arguments to variable 
 
 inputarguments = sys.argv
-command = (str(inputarguments[1]))
 
 del inputarguments[0]
-del inputarguments[0]
 
 
-#string conversion function
+
+#function to convert to string
 
 def instantStringage(inputarguments):
     string = ''
     for object in inputarguments:
-       string += object+' '
+        if object == inputarguments[0]:
+            pass
+        string += object+' '
     return string
 
-#addnotes function
+#function to add a note
 
-def addnotes():  
+if sys.argv[0] == 'addnote':
     note = (instantStringage(inputarguments))
 
     def confirmation():
@@ -45,21 +46,21 @@ def addnotes():
         f.write(note + '\n')
         f.close
 
-#rmnotes function
+#function to remove a note
 
-def rmnote():
+if sys.argv[0] == 'rmnote':
     a_file = open(location, "r")
     lines = a_file.readlines()
     a_file.close()
-    del lines[int(inputarguments[0])-1]
+    del lines[int(inputarguments[1])-1]
     new_file = open("/home/sl3/notes.txt", "w+")
     for line in lines:
         new_file.write(line)
     new_file.close()
 
-#print notes function
+#function to list notes
 
-def lsnotes():
+if sys.argv[0] == 'lsnotes':
     print('\n')
     f = open(location, "r")
     
@@ -83,13 +84,6 @@ def lsnotes():
         print(output)
         number = number + 1
 
-#command selection 
+else:
+    print('\n[bold red]Invalid command[/bold red]\n')
 
-if command == 'addnotes':
-    addnotes()
-
-if command == 'lsnotes':
-    lsnotes()
-
-if command == 'rmnote':
-    rmnote()
