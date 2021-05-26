@@ -13,16 +13,14 @@ inputarguments = sys.argv
 
 del inputarguments[0]
 
-
-
 #function to convert to string
 
 def instantStringage(inputarguments):
     string = ''
-    for object in inputarguments:
-        if object == inputarguments[0]:
-            pass
-        string += object+' '
+    for i in inputarguments:
+        if i == inputarguments[0]:
+            continue
+        string += i+' '
     return string
 
 #function to add a note
@@ -58,6 +56,8 @@ if sys.argv[0] == 'rmnote':
         new_file.write(line)
     new_file.close()
 
+    print('\n[bold red]Note Removed[/bold red]\n')
+
 #function to list notes
 
 if sys.argv[0] == 'lsnotes':
@@ -84,6 +84,14 @@ if sys.argv[0] == 'lsnotes':
         print(output)
         number = number + 1
 
-else:
-    print('\n[bold red]Invalid command[/bold red]\n')
+if sys.argv[0] != 'rmnote':
+    if sys.argv[0] != 'addnote':
+        if sys.argv[0] != 'lsnotes':
+            print('\n[bold red]Invalid command[/bold red]\n')
+
+
+
+
+
+
 
